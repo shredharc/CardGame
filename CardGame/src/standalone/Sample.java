@@ -2,8 +2,8 @@ package standalone;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.LinkedHashSet;
-import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
@@ -15,10 +15,27 @@ public class Sample {
 			    Arrays.asList("Diamond", "Heart", "Club",  "Spade"));
 		ArrayList<String> allCards = new ArrayList<>();
 		Set<Integer> randomSet = getRandomSet();
-		ArrayList<String> randomSuit = getRandomSuit(faceValueList, suitList, allCards, randomSet);
+		getRandomSuit(faceValueList, suitList, allCards, randomSet);
+		
+		//Story 2
+		distrubuteUniqueCards(allCards);
 	}
 
-	private static Set<Integer> getRandomSet() {
+	private static void distrubuteUniqueCards(ArrayList<String> allCards) {
+		Set<String> uniqueList = new HashSet<>();
+		final int NUMBER_RANGE = 52;
+		Random random = new Random();
+        while(uniqueList.size() < 4) {
+        		int nextInt = random.nextInt(NUMBER_RANGE);
+        		uniqueList.add(allCards.get(nextInt));
+        }
+        for (String string : uniqueList) {
+			System.out.println("Sample.distrubuteUniqueCards(): " + string);
+		}
+        
+	}
+
+	private static Set<Integer> getRandomSet() {	
 		final int SET_SIZE_REQUIRED = 52;
 		final int NUMBER_RANGE = 52;
 		Random random = new Random();
